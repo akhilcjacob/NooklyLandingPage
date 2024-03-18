@@ -14,6 +14,9 @@
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #F8F5F2;
@@ -24,14 +27,21 @@
       font-family: 'Playfair Display', serif;
     }
 
-    p {
+    p,
+    button {
       font-family: 'Open Sans', sans-serif;
     }
 
     button {
-      font-family: 'Open Sans', sans-serif;
-      color: #3b82f6;
+      background-color: #394f5b;
+      color: white;
+      transition: background-color 0.3s ease;
     }
+
+    button:hover {
+      background-color: #2c3e50;
+    }
+
 
     .animate__animated {
       animation-duration: 0.5s !important;
@@ -75,84 +85,102 @@
     #founderInfo.visible {
       display: block;
     }
+
+    .splash-image {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: inset 5px 5px 10px #d1cdc7, inset -5px -5px 10px #ffffff;
+      transition: box-shadow 0.3s ease-in-out;
+      filter: blur(1px);
+
+    }
+
+    .favicon-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .favicon-image {
+      width: 75px;
+      height: auto;
+    }
+
+    .text-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.62);
+
+    }
+
+    .text-overlay p {
+      color: white;
+      font-size: 5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+      font-family: "Borel", cursive;
+    }
   </style>
 </head>
 
-<body class="flex justify-center items-center h-screen text-gray-800">
-  <div class="fixed top-0 w-full z-10 animate__animated animate__fadeIn">
-    <div class="text-center p-5">
-      <h1 class="text-5xl mb-3" style="white-space: nowrap;">
-        Quorum
-      </h1>
+<body class="flex pt-10 h-screen text-gray-800 justify-center">
+  <div class="container text-center ">
+    <div class="favicon-container mb-10">
+      <img src="favicon.png" alt="Site Favicon" class="favicon-image">
     </div>
-  </div>
-
-  <div class="container mx-auto text-center pt-10 p-5">
-    <img src="splash_image.png" alt="Quorum Logo"
-      class="mx-auto pt-4 w-3/4 sm:w-1/2 animate__animated animate__fadeIn animate__delay-1 block">
-
-    <h2 class="font-bold text-4xl animate__animated animate__fadeIn animate__delay-2">Conversations, Not Just Podcasts
-    </h2>
-    <p class="text-xl pt-4 animate__animated animate__fadeIn animate__delay-3 text-gray-500">With Quorum, jump into the
-      conversation. Direct the flow, ask the burning questions, and explore uncharted topics. It's not just listening;
-      it's interacting. Live, real-time, and totally revolutionary.</p>
+    <div class="m-5 ">
+      <div class="container text-center relative ">
+        <img src="splash_image.png" alt="Nookly splash image"
+          class="splash-image animate__animated animate__fadeIn animate__delay-1 block rounded-3xl">
+        <div class="text-overlay rounded-3xl">
+          <p>nookly</p>
+        </div>
+      </div>
+    </div>
+    <h2 class="font-bold pt-10 text-4xl animate__animated animate__fadeIn animate__delay-2" style="color: #394f5b;">
+      Simplify Your Home Maintenance with a Single Click</h2>
+    <p class="text-xl pt-4 animate__animated animate__fadeIn animate__delay-3 text-gray-500">Enjoy the ease of
+      scheduling home services without the need for extensive research. Like Uber for home maintenance, select a service
+      and date, and we'll handle the rest, ensuring quality and reliability.</p>
     <button
-      class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded uppercase tracking-wide mt-4 transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-4"
-      onclick="showEmailForm()">Join the conversation</button>
-
+      class="bg-red-500 text-white font-bold py-2 px-4 rounded uppercase tracking-wide mt-4 transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-4"
+      onclick="showEmailForm()">Join the Waitlist Now</button>
     <div id="emailForm" class="w-full max-w-sm mx-auto mt-6 animate__animated animate__fadeIn">
       <p class="pb-2">Join our waitlist to gain early access & updates</p>
-
-      <form action="https://formspree.io/f/xjvngbyw" method="POST"
-        class="flex items-center border-b border-yellow-600 py-2">
+      <form action="https://formspree.io/f/xoqgnewk" method="POST" class="flex items-center border-b  py-2">
         <input
           class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="email" name="email" placeholder="Your Email" aria-label="Email">
-        <button
-          class="flex-shrink-0 bg-yellow-600 hover:bg-yellow-700 border-yellow-600 hover:border-yellow-700 text-sm border-4 text-white py-1 px-2 rounded"
-          type="submit">Sign Up</button>
-        <button
-          class="flex-shrink-0 border-transparent border-4 text-yellow-600 hover:text-yellow-800 text-sm py-1 px-2 rounded"
-          type="button" onclick="hideEmailForm()">Cancel</button>
+        <button class=" bg-red-500 text-sm border-4 text-white py-1 px-2 rounded" type="submit">Sign Up</button>
+        <button class="border-transparent border-4  text-sm py-1 px-2 rounded" type="button"
+          onclick="hideEmailForm()">Cancel</button>
       </form>
     </div>
-
-    <!-- Founder Information Button -->
     <div class="text-center mt-8 animate__animated animate__fadeIn animate__delay-5 ">
       <button
-        class="border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white font-bold py-2 px-4 rounded uppercase tracking-wide transition duration-300 ease-in-out"
+        class="border-2   hover:text-white font-bold py-2 px-4 rounded uppercase tracking-wide transition duration-300 ease-in-out"
         onclick="toggleFounderInfo()">About the Founders</button>
     </div>
-
-    <!-- Founder Information Section -->
-    <div id="founderInfo" class="hidden text-center mt-4">
+    <div id="founderInfo" class="hidden text-center mt-4 p-4">
       <h3 class="text-2xl font-bold">Our Founders</h3>
       <div class="mt-4">
-        <p>
-          <strong>Akhil Jacob</strong> Ex - Datavant, Microsoft
-          <a href="https://www.linkedin.com/in/akhilcjacob" class="p-2" target="_blank">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/akhilcjacob" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        </p>
-        <p>
-          <strong>Dami Dare</strong>: Ex - Robinhood, Microsoft
-          <a href="https://www.linkedin.com/in/dami-d-68676744/" class="p-2" target="_blank">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/daredammy" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        </p>
+        <p><strong>Akhil Jacob</strong> - Founder, Previously at Microsoft, Datavant<a
+            href="https://www.linkedin.com/in/akhilcjacob" class="p-2" target="_blank"><i
+              class="fab fa-linkedin"></i></a><a href="https://github.com/akhilcjacob" target="_blank"><i
+              class="fab fa-github"></i></a></p>
+        <p><strong>Matthew Scott</strong> - Founder, UH Manoa<a
+            href="https://www.linkedin.com/in/matthew-scott-37a1002b6/" class="p-2" target="_blank"><i
+              class="fab fa-linkedin"></i></a></p>
       </div>
     </div>
-
-    <!-- Existing HTML content -->
-
   </div>
-
   <script>
     function showEmailForm() {
       var form = document.getElementById('emailForm');
@@ -172,7 +200,6 @@
         info.classList.add('hidden');
       }
     }
-
   </script>
 </body>
 
