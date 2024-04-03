@@ -22,6 +22,25 @@
   <meta property="og:title" content="Nookly - Simplify Your Home Maintenance">
   <meta property="og:description"
     content="Nookly makes home maintenance effortless. Just like Uber, select a service and date, and we handle the rest.">
+  <!-- Meta Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3666181853600443');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=3666181853600443&ev=PageView&noscript=1" /></noscript>
+      
   <style>
     body {
       background-color: #F8F5F2;
@@ -157,17 +176,19 @@
     <button
       class="bg-red-500  mt-6 text-white font-bold py-2 px-4 rounded uppercase tracking-wide mt-4 transition duration-300 ease-in-out animate__animated animate__fadeIn animate__delay-4"
       onclick="showEmailForm()">Join the Waitlist Now</button>
+    <!-- Form without the action attribute -->
     <div id="emailForm" class="w-full max-w-sm mx-auto mt-6 animate__animated animate__fadeIn">
       <p class="pb-2">Join our waitlist to gain early access & updates</p>
-      <form action="https://formspree.io/f/myyrdbde" method="POST" class="flex items-center border-b  py-2">
+      <form id="waitlistForm" class="flex items-center border-b py-2"> <!-- Removed the action and method attributes -->
         <input
           class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-          type="email" name="email" placeholder="Your Email" aria-label="Email">
-        <button class=" bg-red-500 text-sm border-4 text-white py-1 px-2 rounded" type="submit">Sign Up</button>
-        <button class="border-transparent border-4  text-sm py-1 px-2 rounded" type="button"
-          onclick="hideEmailForm()">Cancel</button>
+          type="email" name="email" placeholder="Your Email" aria-label="Email" required>
+        <button type="submit" class="bg-red-500 text-sm border-4 text-white py-1 px-2 rounded">Sign Up</button>
+        <button type="button" onclick="hideEmailForm()"
+          class="border-transparent border-4 text-sm py-1 px-2 rounded">Cancel</button>
       </form>
     </div>
+
     <div class="text-center mt-8 animate__animated animate__fadeIn animate__delay-5 ">
       <button
         class="border-2   hover:text-white font-bold py-2 px-4 rounded uppercase tracking-wide transition duration-300 ease-in-out"
@@ -179,20 +200,54 @@
         <p>
           <strong>Akhil Jacob</strong> - Founder, Previously at Microsoft, Datavant
           <a href="mailto:akhil@nookly.co" class="p-2" target="_blank">akhil@nookly.co</a>
-          <a href="https://www.linkedin.com/in/akhilcjacob" class="p-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/akhilcjacob" class="p-2" target="_blank"><i
+              class="fab fa-linkedin"></i></a>
           <a href="https://github.com/akhilcjacob" target="_blank"><i class="fab fa-github"></i></a>
         </p>
         <p>
           <strong>Matthew Scott</strong> - Founder, Owner of Pelican Pros
           <a href="mailto:matthew@nookly.co" class="p-2" target="_blank">matthew@nookly.co</a>
-          <a href="https://www.linkedin.com/in/matthew-scott-37a1002b6/" class="p-2" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/matthew-scott-37a1002b6/" class="p-2" target="_blank"><i
+              class="fab fa-linkedin"></i></a>
         </p>
       </div>
     </div>
-    
-    </div>
+
+  </div>
   </div>
   <script>
+    document.getElementById('waitlistForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      const emailInput = document.querySelector('#waitlistForm input[name="email"]');
+      const email = emailInput.value;
+
+      if (email) {
+        fetch('https://waitlistemailaddressregistration-7tcy7smkoq-uc.a.run.app', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: email }),
+        })
+          .then(response => {
+            if (response.ok) {
+              return response;
+            } else {
+              throw new Error('Network response was not ok.');
+            }
+          })
+          .then(data => {
+            console.log('Success:', data);
+
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    });
+
+    // Existing functions
     function showEmailForm() {
       var form = document.getElementById('emailForm');
       form.classList.add('visible');
@@ -212,6 +267,7 @@
       }
     }
   </script>
+
 </body>
 
 </html>
