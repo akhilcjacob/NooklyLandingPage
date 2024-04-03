@@ -27,7 +27,7 @@
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
       n.queue = []; t = b.createElement(e); t.async = !0;
@@ -40,7 +40,7 @@
   </script>
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=3666181853600443&ev=PageView&noscript=1" /></noscript>
-      
+
   <style>
     body {
       background-color: #F8F5F2;
@@ -221,6 +221,7 @@
 
       const emailInput = document.querySelector('#waitlistForm input[name="email"]');
       const email = emailInput.value;
+      const form = document.getElementById('emailForm');
 
       if (email) {
         fetch('https://waitlistemailaddressregistration-7tcy7smkoq-uc.a.run.app', {
@@ -232,20 +233,47 @@
         })
           .then(response => {
             if (response.ok) {
+              // Clear the email input field
+              emailInput.value = '';
+              // Display a success message
+              displaySuccessMessage(form);
               return response;
             } else {
               throw new Error('Network response was not ok.');
             }
           })
-          .then(data => {
-            console.log('Success:', data);
-
-          })
           .catch((error) => {
             console.error('Error:', error);
+            // Optionally, display an error message
+            displayErrorMessage(form, error.message);
           });
       }
     });
+
+    function displaySuccessMessage(form) {
+      const message = document.createElement('p');
+      message.textContent = 'Thank you for joining our waitlist!';
+      message.style.color = 'green';
+      form.appendChild(message);
+
+      // Remove the message after 5 seconds
+      setTimeout(() => {
+        form.removeChild(message);
+      }, 5000);
+    }
+
+    function displayErrorMessage(form, errorMessage) {
+      const message = document.createElement('p');
+      console.log(errorMessage);
+      message.textContent = `Error: ${errorMessage}`;
+      message.style.color = 'red';
+      form.appendChild(message);
+
+      // Remove the message after 5 seconds
+      setTimeout(() => {
+        form.removeChild(message);
+      }, 5000);
+    }
 
     // Existing functions
     function showEmailForm() {
