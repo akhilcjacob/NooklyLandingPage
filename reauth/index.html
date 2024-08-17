@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reauthentication Required - Nookly</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Action Required</h1>
+        <p>We need some additional information to complete your Stripe account setup.</p>
+        <p>Please click the button below to continue the setup process.</p>
+        
+        <a class="button" href="nookly://reauth">Reauthenticate with Nookly</a>
+
+        <p>If you are not redirected automatically, <a href="nookly://reauth">click here</a>.</p>
+    </div>
+
+    <script type="text/javascript">
+        // Attempt to redirect to the app automatically
+        window.location.href = "nookly://reauth";
+    </script>
+</body>
+</html>
+
